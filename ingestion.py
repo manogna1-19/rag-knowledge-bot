@@ -8,10 +8,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 # --------------------------------------------------
-# 1. Load company documents
+# 1. Load company knowledge document
 # --------------------------------------------------
 
-documents_path = "data/documents/employee_handbook.txt"
+documents_path = "data/knowledge.txt"
 
 loader = TextLoader(
     documents_path,
@@ -24,7 +24,7 @@ print(f"Documents loaded: {len(documents)}")
 
 
 # --------------------------------------------------
-# 2. Split documents into smaller chunks
+# 2. Split document into smaller chunks
 # --------------------------------------------------
 
 text_splitter = RecursiveCharacterTextSplitter(
@@ -69,7 +69,7 @@ print("Vector shape:", vectors.shape)
 
 
 # --------------------------------------------------
-# 5. Convert vectors for FAISS
+# 5. Convert vectors to FAISS-compatible format
 # --------------------------------------------------
 
 vectors = vectors.toarray().astype("float32")
@@ -110,7 +110,7 @@ faiss.write_index(
 
 
 # --------------------------------------------------
-# 9. Save vectorizer
+# 9. Save TF-IDF vectorizer
 # --------------------------------------------------
 
 with open(
@@ -138,6 +138,10 @@ with open(
         file
     )
 
+
+# --------------------------------------------------
+# 11. Completion message
+# --------------------------------------------------
 
 print("\nKnowledge base created successfully!")
 print("Saved inside: vectorstore/")

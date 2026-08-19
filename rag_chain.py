@@ -15,7 +15,7 @@ def build_context(results):
 def generate_answer(question):
     """Retrieve relevant company information."""
 
-    results = retrieve_documents(question, k=1)
+    results = retrieve_documents(question, k=3)
 
     if not results:
         return "I could not find relevant information in the company handbook."
