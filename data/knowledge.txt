@@ -1,0 +1,15 @@
+RAG Knowledge Base
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with a language model.
+
+A RAG system first retrieves relevant information from a knowledge base based on the user's question. The retrieved information is then provided to a language model, which generates the final answer.
+
+The main stages of a RAG pipeline are document loading, text splitting, embedding generation, vector storage, similarity search, and answer generation.
+
+Embeddings are numerical representations of text. Similar pieces of text have similar embeddings, which allows a vector database to find relevant information.
+
+ChromaDB is a vector database that can store embeddings and perform similarity searches.
+
+Sentence Transformers can be used to convert text into embeddings. The all-MiniLM-L6-v2 model produces 384-dimensional embeddings.
+
+RAG is useful when a chatbot needs to answer questions based on a specific collection of documents rather than relying only on the knowledge stored in the language model.
