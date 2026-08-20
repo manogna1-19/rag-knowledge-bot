@@ -8,10 +8,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 # --------------------------------------------------
-# 1. Load company knowledge document
+# 1. Load company employee handbook
 # --------------------------------------------------
 
-documents_path = "data/knowledge.txt"
+documents_path = "data/documents/employee_handbook.txt"
+
+if not os.path.exists(documents_path):
+    raise FileNotFoundError(
+        f"Employee handbook not found: {documents_path}"
+    )
 
 loader = TextLoader(
     documents_path,
@@ -24,7 +29,7 @@ print(f"Documents loaded: {len(documents)}")
 
 
 # --------------------------------------------------
-# 2. Split document into smaller chunks
+# 2. Split handbook into smaller chunks
 # --------------------------------------------------
 
 text_splitter = RecursiveCharacterTextSplitter(
@@ -69,7 +74,7 @@ print("Vector shape:", vectors.shape)
 
 
 # --------------------------------------------------
-# 5. Convert vectors to FAISS-compatible format
+# 5. Convert vectors to FAISS format
 # --------------------------------------------------
 
 vectors = vectors.toarray().astype("float32")
@@ -117,7 +122,6 @@ with open(
     "vectorstore/vectorizer.pkl",
     "wb"
 ) as file:
-
     pickle.dump(
         vectorizer,
         file
@@ -132,7 +136,6 @@ with open(
     "vectorstore/chunks.pkl",
     "wb"
 ) as file:
-
     pickle.dump(
         chunks,
         file
